@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Projeto_Estacionamento.Classes
+{
+    public class Veiculo
+    {
+        private string _placa { get; set; }
+
+        private string _proprietario { get; set; }
+
+        private TipoVeiculo _tipoVeiculo { get; set; }
+
+        public TipoVeiculo TipoVeiculo
+        {
+            get
+            {
+                return _tipoVeiculo;
+            }
+            set
+            {
+                _tipoVeiculo = value;
+            }
+        }
+
+        public string Placa
+        {
+            get
+            {
+                return _placa;
+            }
+            set
+            {
+                if (value[3] != '-')
+                {
+                    throw new Exception("O 4° digito deve ser -");
+                }
+                if (value.Length != 8)
+                {
+                    throw new Exception("A placa deve conter 7 dígitos");
+                }
+                else
+                {
+                    _placa = value;
+                }
+            }
+        }
+        public string Modelo { get; set; }
+        public string Cor { get; set; }
+        public string Proprietario
+        {
+            get
+            {
+                return _proprietario;
+            }
+            set
+            {
+                _proprietario = value;
+            }
+        }
+        public DateTime HoraEntrada { get; set; }
+        public DateTime HoraSaida { get; set; }
+    }
+}
