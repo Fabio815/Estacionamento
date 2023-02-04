@@ -87,8 +87,13 @@
                         double valorCobrado = 0;
                         if (item.TipoVeiculo == TipoVeiculo.Carro)
                         {
+                            //O Math.Ceiling vai arrendondar o número. Ex:. temos o número 1,799 = 2,0
+                            if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 15 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 60)
+                            {
+                                valorCobrado = 23.00;
+                            }
                             //Calculo da cobrança.
-                            valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 2.21;
+                            //valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 2.21;
                         }
                         if (item.TipoVeiculo == TipoVeiculo.Moto)
                         {
