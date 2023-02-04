@@ -120,13 +120,17 @@
             Console.WriteLine($"Faturamento total: {Faturamento:c}");
         }
 
+        //(READ) método que vai procurar o carro. Tem o paramatro que o usuário vai digitar.
         public Veiculo EncontrarVeiculo(string placa)
         {
+            //Vou criar uma variável do tipo Veiculo, para armazenar os dados, caso o carro exista.
             Veiculo veiculoAchado = null;
+            //Com o foreach vamos percorrer a lista de veiculos
             foreach (var item in _veiculos)
             {
                 if (item.Placa.Equals(placa))
                 {
+                    //caso a placa exista a variável veiculoAchado vai receber os dados desse veículo
                     veiculoAchado = item;
                 }
             }
@@ -135,6 +139,7 @@
             {
                 throw new Exception("Veículo não encontrado... Tente outro");
             }
+            // Vamos retornar o veiculo achado.
             return veiculoAchado;
         }
 
@@ -150,9 +155,11 @@
 
         public void ImprimirCarros()
         {
+            //Vou criar uma varável vazia, que vai receber o vai ser imprimido
             string imprimir = "";
             foreach (var item in _veiculos)
             {
+                //Vai verificar se o tipo do veículo é um carro.
                 if (item.TipoVeiculo == TipoVeiculo.Carro)
                 {
                     imprimir = $"\nProprietário: {item.Proprietario}\n" +
@@ -163,6 +170,7 @@
                     Console.WriteLine(imprimir);
                 }
             }
+            //Caso continue vazia vai gerar uma excessão como mensagem.
             if (imprimir == "")
             {
                 throw new ArgumentException("Não tem veículos cadastrados");
