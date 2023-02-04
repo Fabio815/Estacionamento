@@ -92,6 +92,14 @@
                             {
                                 valorCobrado = 23.00;
                             }
+                            if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 60 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 120)
+                            {
+                                valorCobrado = 26.00;
+                            }
+                            if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 120 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 300)
+                            {
+                                valorCobrado = 40.00;
+                            }
                             //Calculo da cobrança.
                             //valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 2.21;
                         }
