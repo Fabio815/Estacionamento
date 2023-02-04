@@ -87,6 +87,7 @@
                         double valorCobrado = 0;
                         if (item.TipoVeiculo == TipoVeiculo.Carro)
                         {
+                            //Calculo da cobrança.
                             //O Math.Ceiling vai arrendondar o número. Ex:. temos o número 1,799 = 2,0
                             if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 15 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 60)
                             {
@@ -100,18 +101,30 @@
                             {
                                 valorCobrado = 40.00;
                             }
-                            //Calculo da cobrança.
                             //valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 2.21;
                         }
                         if (item.TipoVeiculo == TipoVeiculo.Moto)
                         {
-                            valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 1.24;
+                            //Calculo da cobrança.
+                            if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 15 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 60)
+                            {
+                                valorCobrado = 12.00;
+                            }
+                            if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 60 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 120)
+                            {
+                                valorCobrado = 15.00;
+                            }
+                            if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 120 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 300)
+                            {
+                                valorCobrado = 26.00;
+                            }
+                            //valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 1.24;
                         }
 
                         Console.WriteLine($"Valor total cobrado: {valorCobrado:c}");
                         //Adicionando ao caixa.
                         Faturamento += valorCobrado;
-                        //E por ultimo vamos remover esse item da lista de carros.
+                        //E por último vamos remover esse item da lista de carros.
                         _veiculos.Remove(item);
                         Console.WriteLine("Veículo REMOVIDO com sucesso!");
                         break;
