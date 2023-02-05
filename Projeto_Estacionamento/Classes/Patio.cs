@@ -147,25 +147,35 @@
         }
 
         //(READ) método que vai procurar o carro. Tem o paramatro que o usuário vai digitar.
-        public Veiculo EncontrarVeiculo(string placa)
-        {
-            //Vou criar uma variável do tipo Veiculo, para armazenar os dados, caso o carro exista.
-            Veiculo veiculoAchado = null;
-            //Com o foreach vamos percorrer a lista de veiculos
-            foreach (var item in _veiculos)
-            {
-                if (item.Placa.Equals(placa))
-                {
-                    //caso a placa exista a variável veiculoAchado vai receber os dados desse veículo
-                    veiculoAchado = item;
-                }
-            }
+        //public Veiculo EncontrarVeiculo(string placa)
+        //{
+        //    //Vou criar uma variável do tipo Veiculo, para armazenar os dados, caso o carro exista.
+        //    Veiculo veiculoAchado = null;
+        //    //Com o foreach vamos percorrer a lista de veiculos
+        //    foreach (var item in _veiculos)
+        //    {
+        //        if (item.Placa.Equals(placa))
+        //        {
+        //            //caso a placa exista a variável veiculoAchado vai receber os dados desse veículo
+        //            veiculoAchado = item;
+        //        }
+        //    }
 
+        //    if (veiculoAchado == null)
+        //    {
+        //        throw new Exception("Veículo não encontrado... Tente outro");
+        //    }
+        //    // Vamos retornar o veiculo achado.
+        //    return veiculoAchado;
+        //}
+
+        public Veiculo EncontrarVeiculoLINQ(string placaUsuario)
+        {
+            var veiculoAchado = Veiculos.Where(placa => placa.Placa == placaUsuario).FirstOrDefault();
             if (veiculoAchado == null)
             {
                 throw new Exception("Veículo não encontrado... Tente outro");
             }
-            // Vamos retornar o veiculo achado.
             return veiculoAchado;
         }
 

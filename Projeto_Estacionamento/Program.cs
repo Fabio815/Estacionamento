@@ -210,5 +210,5 @@ void AcharVeiculo()
     Console.Write("Digite a placa: ");
     string placa = Console.ReadLine();
 
-    Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculo(placa)));
+    Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
 }
