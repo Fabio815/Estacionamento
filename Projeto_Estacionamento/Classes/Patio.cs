@@ -37,31 +37,45 @@
 
 
         #region "Métodos do CRUD"
-        //Esse método vai adicionar o veículo na classe.
-        public void AdicionarEntradaVeiculo(Veiculo veiculo)
+        //(CREATE) Esse método vai adicionar o veículo na classe.
+        public void AdicionarEntradaVeiculoLINQ(Veiculo veiculo)
         {
-            //Variável que vai receber os dados do veículo, caso ele exista.
-            Veiculo existente = null;
-            //Vamos ver se já não existe o veiculo. Para isso vamos percorrer a Lista de veículos com foreach.
-            foreach (var item in _veiculos)
+            var novoVeiculo = Veiculos.Where(Placa => Placa.Placa == veiculo.Placa).FirstOrDefault();
+            if (novoVeiculo == null)
             {
-                if (item.Placa.Equals(veiculo.Placa))
-                {
-                    existente = item;
-                }
-            }
-            //Ai no caso ele exista, vamos gerar uma excessão que vai mandar uma mensagem
-            if (existente != null)
-            {
-                throw new Exception("Esse veículo já é existente, pois não foi cadastro sua saída.");
-            }
-            else
-            {
-                //Passa a hora que e adiciono o veículo
                 veiculo.HoraEntrada = DateTime.Now;
                 Veiculos.Add(veiculo);
             }
+            else
+            {
+                throw new Exception("Esse veículo já é existente, pois não foi cadastro sua saída.");
+            }
         }
+
+        //public void AdicionarEntradaVeiculo(Veiculo veiculo)
+        //{
+        //    //Variável que vai receber os dados do veículo, caso ele exista.
+        //    Veiculo existente = null;
+        //    //Vamos ver se já não existe o veiculo. Para isso vamos percorrer a Lista de veículos com foreach.
+        //    foreach (var item in _veiculos)
+        //    {
+        //        if (item.Placa.Equals(veiculo.Placa))
+        //        {
+        //            existente = item;
+        //        }
+        //    }
+        //    //Ai no caso ele exista, vamos gerar uma excessão que vai mandar uma mensagem
+        //    if (existente != null)
+        //    {
+        //        throw new Exception("Esse veículo já é existente, pois não foi cadastro sua saída.");
+        //    }
+        //    else
+        //    {
+        //        //Passa a hora que e adiciono o veículo
+        //        veiculo.HoraEntrada = DateTime.Now;
+        //        Veiculos.Add(veiculo);
+        //    }
+        //}
 
         public void SaidaDeVeiculo(string placaVeiculo)
         {
@@ -147,6 +161,17 @@
         }
 
         //(READ) método que vai procurar o carro. Tem o paramatro que o usuário vai digitar.
+        public Veiculo EncontrarVeiculoLINQ(string placaUsuario)
+        {
+            //Com o LINQ fazemos a mesma coisa, só que com menos linhas de código. 
+            var veiculoAchado = Veiculos.Where(placa => placa.Placa == placaUsuario).FirstOrDefault();
+            if (veiculoAchado == null)
+            {
+                throw new Exception("Veículo não encontrado... Tente outro");
+            }
+            return veiculoAchado;
+        }
+
         //public Veiculo EncontrarVeiculo(string placa)
         //{
         //    //Vou criar uma variável do tipo Veiculo, para armazenar os dados, caso o carro exista.
@@ -168,16 +193,6 @@
         //    // Vamos retornar o veiculo achado.
         //    return veiculoAchado;
         //}
-
-        public Veiculo EncontrarVeiculoLINQ(string placaUsuario)
-        {
-            var veiculoAchado = Veiculos.Where(placa => placa.Placa == placaUsuario).FirstOrDefault();
-            if (veiculoAchado == null)
-            {
-                throw new Exception("Veículo não encontrado... Tente outro");
-            }
-            return veiculoAchado;
-        }
 
         public string ImprimirVeieculo(Veiculo veiculo)
         {

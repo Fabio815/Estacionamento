@@ -129,7 +129,7 @@ void AdicionarCarro()
     switch (escolhaAdicionar)
     {
         case 1:
-            estacionamento.AdicionarEntradaVeiculo(carro);
+            estacionamento.AdicionarEntradaVeiculoLINQ(carro);
             Console.WriteLine($"Carro de {carro.Proprietario} adicionado com sucesso!");
             break;
         case 2:
@@ -169,7 +169,7 @@ void AdicionarMoto()
     {
         case 1:
             Console.WriteLine($"Moto do(a) {moto.Proprietario} adicionado com sucesso!");
-            estacionamento.AdicionarEntradaVeiculo(moto);
+            estacionamento.AdicionarEntradaVeiculoLINQ(moto);
             break;
         case 2:
             Console.WriteLine("Operação cancelada.");
