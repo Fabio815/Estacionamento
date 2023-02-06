@@ -204,48 +204,45 @@
             return imprimir;
         }
 
+        //(READ) Método que vai mostrar apenas os carros.
+
         public void ImprimirCarros()
         {
-            //Vou criar uma varável vazia, que vai receber o vai ser imprimido
-            string imprimir = "";
             foreach (var item in _veiculos)
             {
                 //Vai verificar se o tipo do veículo é um carro.
                 if (item.TipoVeiculo == TipoVeiculo.Carro)
                 {
-                    imprimir = $"\nProprietário: {item.Proprietario}\n" +
-                    $"Placa: {item.Placa}\n" +
-                    $"Modelo: {item.Modelo} \n" +
-                    $"Cor: {item.Cor} \n" +
-                    $"Hora de Entrada: {item.HoraEntrada}";
-                    Console.WriteLine(imprimir);
+                    if (item != null)
+                    {
+                        Console.WriteLine(ImprimirVeieculo(item));
+                    }
+                }
+                else if (item == null)
+                {
+                    throw new Exception("Nenhum carro encontrado...");
                 }
             }
             //Caso continue vazia vai gerar uma excessão como mensagem.
-            if (imprimir == "")
-            {
-                throw new ArgumentException("Não tem veículos cadastrados");
-            }
+
         }
 
+        //(READ) Vai imprimir apenas as motos.
         public void ImprimirMotos()
         {
-            string imprimir = "";
             foreach (var item in _veiculos)
             {
                 if (item.TipoVeiculo == TipoVeiculo.Moto)
                 {
-                    imprimir = $"\nProprietário: {item.Proprietario}\n" +
-                    $"Placa: {item.Placa}\n" +
-                    $"Modelo: {item.Modelo} \n" +
-                    $"Cor: {item.Cor} \n" +
-                    $"Hora de Entrada: {item.HoraEntrada}";
-                    Console.WriteLine(imprimir);
+                    if (item != null)
+                    {
+                        Console.WriteLine(ImprimirVeieculo(item));
+                    }     
                 }
-            }
-            if (imprimir == "")
-            {
-                throw new ArgumentException("Não tem veículos cadastrados");
+                else if (item == null)
+                {
+                    Console.WriteLine("Nenhuma moto encontrado...");
+                }
             }
         }
 
