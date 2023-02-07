@@ -26,7 +26,7 @@ void MenuPrincipal()
                     break;
                 case 2:
                     Console.Clear();
-                    CadastroDeSaida();
+                    SaidaDeVeiculoLINQ();
                     Console.ReadKey();
                     break;
                 case 3:
@@ -181,7 +181,7 @@ void AdicionarMoto()
 }
 
 //Cadastra a saída dos veículos
-void CadastroDeSaida()
+void SaidaDeVeiculoLINQ()
 {
     Veiculo saidaVeiculo = new Veiculo();
     Console.Write("Digite a placa do veículo: ");
