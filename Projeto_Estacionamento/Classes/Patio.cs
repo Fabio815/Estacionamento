@@ -199,6 +199,7 @@
             }
         }
 
+        //(UPDATE) Cadastra a saída de um veículo 
         public void SaidaDeVeiculoLINQ(string placaveiculo)
         {
             var veiculoAchado = Veiculos.Where(veiculo => veiculo.Placa == placaveiculo).FirstOrDefault();
@@ -284,21 +285,13 @@
         //(READ) Método que vai mostrar apenas os carros.
         public void ImprimirCarros()
         {
-            try
+            foreach (var item in _veiculos)
             {
-                foreach (var item in _veiculos)
+                //Vai verificar se o tipo do veículo é um carro.
+                if (item.TipoVeiculo == TipoVeiculo.Carro)
                 {
-                    //Vai verificar se o tipo do veículo é um carro.
-                    if (item.TipoVeiculo == TipoVeiculo.Carro)
-                    {
-                        Console.WriteLine(ImprimirVeieculo(item));
-                        Console.WriteLine("Batata");
-                    }
+                    Console.WriteLine(ImprimirVeieculo(item));
                 }
-            }
-            catch
-            {
-                throw new Exception("Nenhum carro cadastrado...");
             }
         }
 
