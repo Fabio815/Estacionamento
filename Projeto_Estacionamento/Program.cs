@@ -186,7 +186,7 @@ void SaidaDeVeiculoLINQ()
     Veiculo saidaVeiculo = new Veiculo();
     Console.Write("Digite a placa do veículo: ");
     string placa = Console.ReadLine().ToUpper();
-    estacionamento.SaidaDeVeiculo(placa);
+    estacionamento.SaidaDeVeiculoLINQ(placa);
     Console.ReadKey();
 }
 
