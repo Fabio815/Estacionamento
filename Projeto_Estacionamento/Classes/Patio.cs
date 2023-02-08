@@ -42,12 +42,12 @@
 
         public string ImprimirVeieculo(Veiculo veiculo)
         {
-            string imprimir = $"\nProprietário: {veiculo.Proprietario}\n" +
-            $"Placa: {veiculo.Placa}\n" +
-            $"Modelo: {veiculo.Modelo} \n" +
-            $"Cor: {veiculo.Cor} \n" +
-            $"Hora de Entrada: {veiculo.HoraEntrada}";
-            return imprimir;
+                string imprimir = $"\nProprietário: {veiculo.Proprietario}\n" +
+                $"Placa: {veiculo.Placa}\n" +
+                $"Modelo: {veiculo.Modelo} \n" +
+                $"Cor: {veiculo.Cor} \n" +
+                $"Hora de Entrada: {veiculo.HoraEntrada}";
+                return imprimir;
         }
 
         public void FaturamentoTotal()
@@ -285,6 +285,9 @@
         //(READ) Método que vai mostrar apenas os carros.
         public void ImprimirCarros()
         {
+            Console.WriteLine("=-=-=-=-=-= MOTOS ESTACINADOS =-=-=-=-=-=\n");
+
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
             foreach (var item in _veiculos)
             {
                 //Vai verificar se o tipo do veículo é um carro.
@@ -293,11 +296,15 @@
                     Console.WriteLine(ImprimirVeieculo(item));
                 }
             }
+            Console.WriteLine("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         }
 
         //(READ) Vai imprimir apenas as motos.
         public void ImprimirMotos()
         {
+            Console.WriteLine("=-=-=-=-=-= MOTOS ESTACINADOS =-=-=-=-=-=\n");
+
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             foreach (var item in _veiculos)
             {
                 //Vai verificar se o tipo do veículo é um carro.
@@ -306,6 +313,7 @@
                     Console.WriteLine(ImprimirVeieculo(item));
                 }
             }
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         }
         #endregion
     }
