@@ -1,4 +1,6 @@
-﻿namespace Projeto_Estacionamento.Classes
+﻿using System.Reflection.PortableExecutable;
+
+namespace Projeto_Estacionamento.Classes
 {
     public class Patio
     {
@@ -42,12 +44,12 @@
 
         public string ImprimirVeieculo(Veiculo veiculo)
         {
-                string imprimir = $"\nProprietário: {veiculo.Proprietario}\n" +
-                $"Placa: {veiculo.Placa}\n" +
-                $"Modelo: {veiculo.Modelo} \n" +
-                $"Cor: {veiculo.Cor} \n" +
-                $"Hora de Entrada: {veiculo.HoraEntrada}";
-                return imprimir;
+            string imprimir = $"\nProprietário: {veiculo.Proprietario}\n" +
+            $"Placa: {veiculo.Placa}\n" +
+            $"Modelo: {veiculo.Modelo} \n" +
+            $"Cor: {veiculo.Cor} \n" +
+            $"Hora de Entrada: {veiculo.HoraEntrada}";
+            return imprimir;
         }
 
         public void FaturamentoTotal()
@@ -314,6 +316,19 @@
                 }
             }
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        }
+
+        //(UPDATE) Alteração de veículo
+        public Veiculo UpdateVeiculo(string placa, string proprietario, string modelo, string cor)
+        {
+            
+            Veiculo veiculoEncontrado = Veiculos.Where(vei => vei.Placa == placa).FirstOrDefault();
+            var veiculoSub = veiculoEncontrado;
+
+            Veiculos.Remove(veiculoEncontrado);
+            veiculoSub.AlterarVeiculo(proprietario, modelo, cor);
+            Veiculos.Add(veiculoSub);
+            return veiculoSub;
         }
         #endregion
     }

@@ -55,6 +55,11 @@ void MenuPrincipal()
                     Console.ReadKey();
                     break;
                 case 8:
+                    Console.Clear();
+                    AlterarDadosVeiculo();
+                    Console.ReadKey();
+                    break;
+                case 9:
                     Console.WriteLine("Saindo...");
                     Thread.Sleep(2000);
                     parar = false;
@@ -75,7 +80,7 @@ void MenuPrincipal()
             Console.WriteLine(ex.Message);
             Console.ReadKey();
         }
-        
+
     } while (parar);
 }
 
@@ -211,4 +216,26 @@ void AcharVeiculo()
     string placa = Console.ReadLine();
 
     Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
+}
+
+void AlterarDadosVeiculo()
+{
+    Console.WriteLine("=-=-=-=-=-= ALTERAR VEÍCULO =-=-=-=-=-=");
+    Console.Write("Digite a placa: ");
+    string placa = Console.ReadLine();
+
+    Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
+
+    Console.WriteLine("Agora digite a alteração");
+    Console.Write("Proprietário: ");
+    string proprietario = Console.ReadLine();
+
+    Console.Write("Modelo: ");
+    string modelo = Console.ReadLine();
+
+    Console.Write("Cor: ");
+    string cor = Console.ReadLine();
+
+    estacionamento.UpdateVeiculo(placa, proprietario, modelo, cor);
+    Console.WriteLine("Veículo alterado com sucesso!");
 }
