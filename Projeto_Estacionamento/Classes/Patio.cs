@@ -201,7 +201,7 @@ namespace Projeto_Estacionamento.Classes
             }
         }
 
-        //(UPDATE) Cadastra a saída de um veículo 
+        //(DELETE) Cadastra a saída de um veículo 
         public void SaidaDeVeiculoLINQ(string placaveiculo)
         {
             var veiculoAchado = Veiculos.Where(veiculo => veiculo.Placa == placaveiculo).FirstOrDefault();
