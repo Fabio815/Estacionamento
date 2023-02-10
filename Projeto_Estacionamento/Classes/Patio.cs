@@ -319,16 +319,22 @@ namespace Projeto_Estacionamento.Classes
         }
 
         //(UPDATE) Alteração de veículo
-        public Veiculo UpdateVeiculo(string placa, string proprietario, string modelo, string cor)
+        public Veiculo UpdateVeiculo(string placa, string proprietario, string modelo, string cor, string placaAlterada)
         {
-            
+
             Veiculo veiculoEncontrado = Veiculos.Where(vei => vei.Placa == placa).FirstOrDefault();
             var veiculoSub = veiculoEncontrado;
-
-            Veiculos.Remove(veiculoEncontrado);
-            veiculoSub.AlterarVeiculo(proprietario, modelo, cor);
-            Veiculos.Add(veiculoSub);
-            return veiculoSub;
+            if (!(veiculoEncontrado == null))
+            {
+                Veiculos.Remove(veiculoEncontrado);
+                veiculoSub.AlterarVeiculo(proprietario, modelo, cor, placaAlterada);
+                Veiculos.Add(veiculoSub);
+                return veiculoSub;
+            }
+            else
+            {
+                throw new Exception("Veículo não encontrado...");
+            }
         }
         #endregion
     }

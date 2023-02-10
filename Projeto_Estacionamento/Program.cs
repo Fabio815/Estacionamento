@@ -220,22 +220,38 @@ void AcharVeiculo()
 
 void AlterarDadosVeiculo()
 {
+    bool parar = true;
     Console.WriteLine("=-=-=-=-=-= ALTERAR VEÍCULO =-=-=-=-=-=");
     Console.Write("Digite a placa: ");
     string placa = Console.ReadLine();
-
+    var veiculoEncontrado = estacionamento.EncontrarVeiculoLINQ(placa);
     Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
 
-    Console.WriteLine("Agora digite a alteração");
-    Console.Write("Proprietário: ");
-    string proprietario = Console.ReadLine();
+    do
+    {
+        Console.WriteLine("Agora digite a alteração");
+        Console.Write("Proprietário: ");
+        string proprietario = Console.ReadLine();
 
-    Console.Write("Modelo: ");
-    string modelo = Console.ReadLine();
+        Console.Write("Placa: ");
+        string placaAlterar = Console.ReadLine();
 
-    Console.Write("Cor: ");
-    string cor = Console.ReadLine();
+        Console.Write("Modelo: ");
+        string modelo = Console.ReadLine();
 
-    estacionamento.UpdateVeiculo(placa, proprietario, modelo, cor);
+        Console.Write("Cor: ");
+        string cor = Console.ReadLine();
+
+        estacionamento.UpdateVeiculo(placa, proprietario, modelo, cor, placaAlterar);
+
+        if (placaAlterar == "" || proprietario == "" || modelo == "" || cor == "")
+        {
+            Console.WriteLine("Se deve preencher o formulário inteiro... Tente novamente.");
+        }
+        else
+        {
+            parar = false;
+        }
+    } while (parar);
     Console.WriteLine("Veículo alterado com sucesso!");
 }

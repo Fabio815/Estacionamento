@@ -64,11 +64,12 @@ namespace Projeto_Estacionamento.Classes
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }
 
-        public void AlterarVeiculo(string proprietario, string modelo, string cor)
+        public void AlterarVeiculo(string proprietario, string modelo, string cor, string placaAlterada)
         {
             this.Proprietario = proprietario;
             this.Modelo = modelo;
             this.Cor = cor;
+            this.Placa = placaAlterada;
         }
     }
 }
