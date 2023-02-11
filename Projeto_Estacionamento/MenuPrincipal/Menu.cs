@@ -19,53 +19,55 @@ namespace Projeto_Estacionamento.MenuPrincipal
             {
                 try
                 {
+
+
                     Console.Clear();
                     Console.WriteLine("(1) Registrar entrada\n(2) Gegistrar saída\n(3) Exibir faturamenro\n(4) Mostrar veículos estacionados\n(5) Procurar Veículo\n(6) Mostrar apenas carros estacionados\n(7) Mostrar apenas motos estacionados\n(8) Alterar veículo\n(9) Sair da aplicação");
                     Console.Write("Escolha uma das opções: ");
-                    int opcao = Convert.ToInt32(Console.ReadLine());
+                    string opcao = Console.ReadLine();
                     switch (opcao)
                     {
-                        case 1:
+                        case "1":
                             Console.Clear();
                             AdicionarVeiculo();
                             Console.ReadKey();
                             break;
-                        case 2:
+                        case "2":
                             Console.Clear();
                             SaidaDeVeiculoLINQ();
                             Console.ReadKey();
                             break;
-                        case 3:
+                        case "3":
                             Console.Clear();
                             estacionamento.FaturamentoTotal();
                             Console.ReadKey();
                             break;
-                        case 4:
+                        case "4":
                             Console.Clear();
                             VeiculosEstacionados();
                             Console.ReadKey();
                             break;
-                        case 5:
+                        case "5":
                             Console.Clear();
                             AcharVeiculo();
                             Console.ReadKey();
                             break;
-                        case 6:
+                        case "6":
                             Console.Clear();
                             estacionamento.ImprimirCarros();
                             Console.ReadKey();
                             break;
-                        case 7:
+                        case "7":
                             Console.Clear();
                             estacionamento.ImprimirMotos();
                             Console.ReadKey();
                             break;
-                        case 8:
+                        case "8":
                             Console.Clear();
                             AlterarDadosVeiculo();
                             Console.ReadKey();
                             break;
-                        case 9:
+                        case "9":
                             Console.WriteLine("Saindo...");
                             Thread.Sleep(2000);
                             parar = false;
@@ -75,6 +77,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
                             Console.ReadKey();
                             break;
                     }
+
                 }
                 catch (ArgumentException exArgu)
                 {
@@ -83,34 +86,45 @@ namespace Projeto_Estacionamento.MenuPrincipal
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("Erro: " + ex.Message);
                     Console.ReadKey();
                 }
-
             } while (parar);
         }
 
         //Escolhe se vai adicionar a moto ou o carro.
         public void AdicionarVeiculo()
         {
-            Console.WriteLine("Deseja adicionar 1 - Carro / 2 - Moto");
-            Console.Write("Opção: ");
-            int opcao = Convert.ToInt32(Console.ReadLine());
-
-            switch (opcao)
+            bool parar = true;
+            do
             {
-                case 1:
-                    Console.Clear();
-                    AdicionarCarro();
-                    break;
-                case 2:
-                    Console.Clear();
-                    AdicionarMoto();
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida!");
-                    break;
-            }
+                Console.Clear();
+                Console.WriteLine("Deseja adicionar 1 - Carro / 2 - Moto / 3 Cancelar");
+                Console.Write("Opção: ");
+                string opcao = Console.ReadLine();
+
+                switch (opcao)
+                {
+                    case "1":
+                        Console.Clear();
+                        AdicionarCarro();
+                        parar = false;
+                        break;
+                    case "2":
+                        Console.Clear();
+                        AdicionarMoto();
+                        parar = false;
+                        break;
+                    case "3":
+                        MenuPrincipal();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Opção inválida!");
+                        Console.ReadKey();
+                        break;
+                }
+            } while (parar);
         }
 
         //Método que adiciona um carro na lista de veículos.
@@ -119,7 +133,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
             Veiculo carro = new Veiculo();
             //Aqui adicionamos o tipo que esse veículo é.
             carro.TipoVeiculo = TipoVeiculo.Carro;
-            Console.WriteLine("========== Cadastro de Carro ==========");
+            Console.WriteLine("========== CADASTRO DE CARROS ==========");
 
             Console.Write("Proprietário: ");
             carro.Proprietario = Console.ReadLine();
@@ -157,7 +171,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
         {
             Veiculo moto = new Veiculo();
             moto.TipoVeiculo = TipoVeiculo.Moto;
-            Console.WriteLine("========== Cadastro de Motos  ==========");
+            Console.WriteLine("========== CADASTRO DE MOTOS  ==========");
 
             Console.Write("Proprietário: ");
             moto.Proprietario = Console.ReadLine();
@@ -194,11 +208,33 @@ namespace Projeto_Estacionamento.MenuPrincipal
         //Cadastra a saída dos veículos
         public void SaidaDeVeiculoLINQ()
         {
-            Veiculo saidaVeiculo = new Veiculo();
-            Console.Write("Digite a placa do veículo: ");
-            string placa = Console.ReadLine().ToUpper();
-            estacionamento.SaidaDeVeiculoLINQ(placa);
-            Console.ReadKey();
+            bool quebra = true;
+            Console.WriteLine("========== SAÍDA DE CARROS ==========");
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Adicionar saída de um veículo [1] SIM / [2] NÃO");
+                string opcao = Console.ReadLine();
+                switch (opcao)
+                {
+                    case "1":
+                        Console.Write("Digite a placa do veículo: ");
+                        string placa = Console.ReadLine().ToUpper();
+                        //Veiculo saidaVeiculo = new Veiculo();
+                        estacionamento.SaidaDeVeiculoLINQ(placa);
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case "2":
+                        MenuPrincipal();
+                        quebra = false;
+                        break;
+                    default:
+                        Console.WriteLine("Opção incorreta");
+                        Console.ReadKey();
+                        break;
+                }
+            } while (quebra);
         }
 
         //Imprime todos os veículos
@@ -226,40 +262,65 @@ namespace Projeto_Estacionamento.MenuPrincipal
 
         public void AlterarDadosVeiculo()
         {
-            bool parar = true;
+            bool parar = true, quebraPrincipal = true;
             Console.WriteLine("=-=-=-=-=-= ALTERAR VEÍCULO =-=-=-=-=-=");
-            Console.Write("Digite a placa: ");
-            string placa = Console.ReadLine();
-            var veiculoEncontrado = estacionamento.EncontrarVeiculoLINQ(placa);
-            Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
-
             do
             {
-                Console.WriteLine("Agora digite a alteração");
-                Console.Write("Proprietário: ");
-                string proprietario = Console.ReadLine();
-
-                Console.Write("Placa: ");
-                string placaAlterar = Console.ReadLine();
-
-                Console.Write("Modelo: ");
-                string modelo = Console.ReadLine();
-
-                Console.Write("Cor: ");
-                string cor = Console.ReadLine();
-
-                estacionamento.UpdateVeiculo(placa, proprietario, modelo, cor, placaAlterar);
-
-                if (placaAlterar == "" || proprietario == "" || modelo == "" || cor == "")
+                Console.Clear();
+                Console.Clear();
+                Console.WriteLine("[1] Alterar os dados de um veículo / [2] Cancelar");
+                string opcao = Console.ReadLine();
+                switch (opcao)
                 {
-                    Console.WriteLine("Se deve preencher o formulário inteiro... Tente novamente.");
+                    case "1":
+                        do
+                        {
+                            Console.Write("Digite a placa: ");
+                            string placa = Console.ReadLine();
+                            var veiculoEncontrado = estacionamento.EncontrarVeiculoLINQ(placa);
+                            Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
+                            if (veiculoEncontrado != null)
+                            {
+                                Console.WriteLine("Agora digite a alteração");
+                                Console.Write("Proprietário: ");
+                                string proprietario = Console.ReadLine();
+
+                                Console.Write("Placa: ");
+                                string placaAlterar = Console.ReadLine();
+
+                                Console.Write("Modelo: ");
+                                string modelo = Console.ReadLine();
+
+                                Console.Write("Cor: ");
+                                string cor = Console.ReadLine();
+
+                                if (placaAlterar == "" || proprietario == "" || modelo == "" || cor == "")
+                                {
+                                    Console.WriteLine("Se deve preencher o formulário inteiro... Tente novamente");
+                                }
+                                else
+                                {
+                                    estacionamento.UpdateVeiculo(placa, proprietario, modelo, cor, placaAlterar);
+                                    parar = false;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Veículo não encontrado... Tente outro.");
+                            }
+                        } while (parar);
+                        Console.WriteLine("Veículo alterado com sucesso!");
+                        quebraPrincipal = false;
+                        break;
+                    case "2":
+                        quebraPrincipal = false;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida!");
+                        Console.ReadKey();
+                        break;
                 }
-                else
-                {
-                    parar = false;
-                }
-            } while (parar);
-            Console.WriteLine("Veículo alterado com sucesso!");
+            } while (quebraPrincipal);
         }
     }
 }

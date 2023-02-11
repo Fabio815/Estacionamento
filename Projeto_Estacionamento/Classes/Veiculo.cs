@@ -36,11 +36,11 @@ namespace Projeto_Estacionamento.Classes
             {
                 if (value[3] != '-')
                 {
-                    throw new Exception("O 4° digito deve ser -");
+                    throw new ArgumentException("O 4° digito deve ser -");
                 }
                 if (value.Length != 8)
                 {
-                    throw new Exception("A placa deve conter 7 dígitos");
+                    throw new ArgumentException("A placa deve conter 7 dígitos");
                 }
                 else
                 {

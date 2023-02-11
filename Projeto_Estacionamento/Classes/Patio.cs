@@ -48,7 +48,7 @@ namespace Projeto_Estacionamento.Classes
             $"Placa: {veiculo.Placa}\n" +
             $"Modelo: {veiculo.Modelo} \n" +
             $"Cor: {veiculo.Cor} \n" +
-            $"Hora de Entrada: {veiculo.HoraEntrada}";
+            $"Hora de Entrada: {veiculo.HoraEntrada}\n";
             return imprimir;
         }
 
@@ -267,7 +267,7 @@ namespace Projeto_Estacionamento.Classes
             }
             else
             {
-                throw new Exception("Veículo não encontrado...");
+                Console.WriteLine("Veículo não encontrado...");
             }
         }
 
@@ -324,7 +324,7 @@ namespace Projeto_Estacionamento.Classes
 
             Veiculo veiculoEncontrado = Veiculos.Where(vei => vei.Placa == placa).FirstOrDefault();
             var veiculoSub = veiculoEncontrado;
-            if (!(veiculoEncontrado == null))
+            if (veiculoSub != null)
             {
                 Veiculos.Remove(veiculoEncontrado);
                 veiculoSub.AlterarVeiculo(proprietario, modelo, cor, placaAlterada);
@@ -333,7 +333,7 @@ namespace Projeto_Estacionamento.Classes
             }
             else
             {
-                throw new Exception("Veículo não encontrado...");
+                return veiculoSub;
             }
         }
         #endregion
