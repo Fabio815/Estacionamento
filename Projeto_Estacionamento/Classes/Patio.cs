@@ -211,7 +211,7 @@ namespace Projeto_Estacionamento.Classes
             if (veiculoAchado != null)
             {
                 //Método de imprimir os dados de um veículo
-                ImprimirVeieculo(veiculoAchado);
+                Console.WriteLine(veiculoAchado.ToString());
                 Console.WriteLine("Deseja realmente registrar a saída do veículo acima? [1] SIM / [2] CANCELAR");
                 int op = Convert.ToInt32(Console.ReadLine());
                 switch (op)
@@ -261,6 +261,7 @@ namespace Projeto_Estacionamento.Classes
                         //Removendo o veículo da lista(Veiculos).
                         Veiculos.Remove(veiculoAchado);
                         Console.WriteLine("Veículo removido com sucesso!");
+                        
                         break;
                     case 2:
                         Console.WriteLine("Operação concelada com sucesso!");
@@ -281,10 +282,6 @@ namespace Projeto_Estacionamento.Classes
         {
             //Com o LINQ fazemos a mesma coisa, só que com menos linhas de código. 
             var veiculoAchado = Veiculos.Where(placa => placa.Placa == placaUsuario).FirstOrDefault();
-            if (veiculoAchado == null)
-            {
-                throw new Exception("Veículo não encontrado... Tente outro");
-            }
             return veiculoAchado;
         }
 
@@ -300,7 +297,7 @@ namespace Projeto_Estacionamento.Classes
                 //Vai verificar se o tipo do veículo é um carro.
                 if (item.TipoVeiculo == TipoVeiculo.Carro)
                 {
-                    Console.WriteLine(ImprimirVeieculo(item));
+                    Console.WriteLine(item.ToString());
                 }
             }
             Console.WriteLine("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -317,7 +314,7 @@ namespace Projeto_Estacionamento.Classes
                 //Vai verificar se o tipo do veículo é um carro.
                 if (item.TipoVeiculo == TipoVeiculo.Moto)
                 {
-                    Console.WriteLine(ImprimirVeieculo(item));
+                    Console.WriteLine(item.ToString());
                 }
             }
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");

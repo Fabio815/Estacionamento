@@ -222,8 +222,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
                         string placa = Console.ReadLine().ToUpper();
                         //Veiculo saidaVeiculo = new Veiculo();
                         estacionamento.SaidaDeVeiculoLINQ(placa);
-                        Console.ReadKey();
-                        Console.Clear();
+                        quebra = false;
                         break;
                     case "2":
                         MenuPrincipal();
@@ -245,7 +244,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             foreach (var item in estacionamento.Veiculos)
             {
-                Console.WriteLine(estacionamento.ImprimirVeieculo(item));
+                Console.WriteLine(item.ToString());
             }
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         }
@@ -257,7 +256,14 @@ namespace Projeto_Estacionamento.MenuPrincipal
             Console.Write("Digite a placa: ");
             string placa = Console.ReadLine();
 
-            Console.WriteLine(estacionamento.ImprimirVeieculo(estacionamento.EncontrarVeiculoLINQ(placa)));
+            if (estacionamento.EncontrarVeiculoLINQ(placa) == null)
+            {
+                Console.WriteLine("Veículo não encontrado... Tente outro");
+            }
+            else if(estacionamento.EncontrarVeiculoLINQ(placa) != null)
+            {
+                Console.WriteLine(estacionamento.EncontrarVeiculoLINQ(placa).ToString());
+            }
         }
 
         public void AlterarDadosVeiculo()

@@ -73,5 +73,16 @@ namespace Projeto_Estacionamento.Classes
             this.Cor = cor;
             this.Placa = placaAlterada;
         }
+
+        public override string ToString()
+        {
+            return $"\nDados do veículo: \n" +
+                    $"Proprietario: {this.Proprietario}\n" +
+                    $"Placa: {this.Placa}\n" +
+                    $"Modelo {this.Modelo}\n" +
+                    $"Cor: {this.Cor} \n" +
+                    $"Tipo do Veículo: {this.TipoVeiculo.ToString()}\n" +
+                    $"Hora de Entrada: {this.HoraEntrada}\n";
+        }
     }
 }
