@@ -22,7 +22,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
 
 
                     Console.Clear();
-                    Console.WriteLine("(1) Registrar entrada\n(2) Gegistrar saída\n(3) Exibir faturamenro\n(4) Mostrar veículos estacionados\n(5) Procurar Veículo\n(6) Mostrar apenas carros estacionados\n(7) Mostrar apenas motos estacionados\n(8) Alterar veículo\n(9) Sair da aplicação");
+                    Console.WriteLine("(1) Registrar entrada\n(2) Gegistrar saída\n(3) Exibir faturamenro\n(4) Mostrar veículos estacionados\n(5) Procurar veículo\n(6) Mostrar apenas carros estacionados\n(7) Mostrar apenas motos estacionados\n(8) Alterar veículo\n(9) Sair da aplicação");
                     Console.Write("Escolha uma das opções: ");
                     string opcao = Console.ReadLine();
                     switch (opcao)
