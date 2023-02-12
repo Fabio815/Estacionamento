@@ -34,6 +34,7 @@ namespace Projeto_Estacionamento.Classes
             }
             set
             {
+                //Colocando condição ao inserir a placa.
                 if (value[3] != '-')
                 {
                     throw new ArgumentException("O 4° digito deve ser -");
@@ -64,6 +65,7 @@ namespace Projeto_Estacionamento.Classes
         public DateTime HoraEntrada { get; set; }
         public DateTime HoraSaida { get; set; }
 
+        //Método que vai alterar o veículo.
         public void AlterarVeiculo(string proprietario, string modelo, string cor, string placaAlterada)
         {
             this.Proprietario = proprietario;

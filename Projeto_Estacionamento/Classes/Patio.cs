@@ -189,9 +189,11 @@ namespace Projeto_Estacionamento.Classes
         //(CREATE) Esse método vai adicionar o veículo na classe.
         public void AdicionarEntradaVeiculoLINQ(Veiculo veiculo)
         {
+            //Com o método do LINQ, podemos procurar um veículo específico. Nesse caso estou verificando se já não existe o veículo, que o usuário quer inserir.
             var novoVeiculo = Veiculos.Where(Placa => Placa.Placa == veiculo.Placa).FirstOrDefault();
             if (novoVeiculo == null)
             {
+                //Adicionando a hora
                 veiculo.HoraEntrada = DateTime.Now;
                 Veiculos.Add(veiculo);
             }
@@ -201,25 +203,28 @@ namespace Projeto_Estacionamento.Classes
             }
         }
 
-        //(DELETE) Cadastra a saída de um veículo 
+        //(DELETE) Cadastra a saída de um veículo. Passando como parametro a placa, para procurarmos o veículo.
         public void SaidaDeVeiculoLINQ(string placaveiculo)
         {
             var veiculoAchado = Veiculos.Where(veiculo => veiculo.Placa == placaveiculo).FirstOrDefault();
-
+            //Caso o veículo exista.
             if (veiculoAchado != null)
             {
+                //Método de imprimir os dados de um veículo
                 ImprimirVeieculo(veiculoAchado);
                 Console.WriteLine("Deseja realmente registrar a saída do veículo acima? [1] SIM / [2] CANCELAR");
                 int op = Convert.ToInt32(Console.ReadLine());
                 switch (op)
                 {
                     case 1:
+                        //Registra a saída do veículo.
                         veiculoAchado.HoraSaida = DateTime.Now;
                         double valorCobrado = 0;
+                        //Operação que vai ter o total de tempo do usuário.
                         var tempoPermanecido = veiculoAchado.HoraSaida - veiculoAchado.HoraEntrada;
                         if (veiculoAchado.TipoVeiculo == TipoVeiculo.Carro)
                         {
-                            //Calculo da cobrança.
+                            //Calculo da cobrança. Estou pegando o tempo em minutos.
                             //O Math.Ceiling vai arrendondar o número. Ex:. temos o número 1,799 = 2,0
                             if (Math.Ceiling(tempoPermanecido.TotalMinutes) > 15 && Math.Ceiling(tempoPermanecido.TotalMinutes) <= 60)
                             {
@@ -233,7 +238,6 @@ namespace Projeto_Estacionamento.Classes
                             {
                                 valorCobrado = 40.00;
                             }
-                            //valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 2.21;
                         }
                         else if (veiculoAchado.TipoVeiculo == TipoVeiculo.Moto)
                         {
@@ -250,10 +254,11 @@ namespace Projeto_Estacionamento.Classes
                             {
                                 valorCobrado = 26.00;
                             }
-                            //valorCobrado = Math.Ceiling(tempoPermanecido.TotalHours) * 1.24;
                         }
+                        //Mostrando para o usuário quanto será cobrado.
                         Console.WriteLine($"Valor total cobrado {valorCobrado:c}");
                         Faturamento += valorCobrado;
+                        //Removendo o veículo da lista(Veiculos).
                         Veiculos.Remove(veiculoAchado);
                         Console.WriteLine("Veículo removido com sucesso!");
                         break;
