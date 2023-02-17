@@ -323,7 +323,6 @@ namespace Projeto_Estacionamento.Classes
         //(UPDATE) Alteração de veículo
         public Veiculo UpdateVeiculo(string placa, string proprietario, string modelo, string cor, string placaAlterada)
         {
-
             Veiculo veiculoEncontrado = Veiculos.Where(vei => vei.Placa == placa).FirstOrDefault();
             var veiculoSub = veiculoEncontrado;
             if (veiculoSub != null)
