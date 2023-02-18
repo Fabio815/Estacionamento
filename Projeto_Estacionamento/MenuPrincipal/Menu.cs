@@ -159,13 +159,14 @@ namespace Projeto_Estacionamento.MenuPrincipal
                 switch (escolhaAdicionar)
                 {
                     case "1":
-                        if (carro.Cor == "" || carro.Proprietario == "" || carro.Modelo == "")
+                        if (carro.Cor == "" || carro.Proprietario == "" || carro.Modelo == "" || carro.Placa == "")
                         {
                             Console.WriteLine("É preciso preencher todos os dados!");
                             Console.ReadKey();
                         }
                         else
                         {
+                            //Função da classe do patio que adiciona o carro.
                             estacionamento.AdicionarEntradaVeiculoLINQ(carro);
                             Console.WriteLine($"Carro de {carro.Proprietario} adicionado com sucesso!");
                             quebra = false;
@@ -214,13 +215,14 @@ namespace Projeto_Estacionamento.MenuPrincipal
                 switch (escolha)
                 {
                     case "1":
-                        if (moto.Cor == "" || moto.Proprietario == "" || moto.Modelo == "")
+                        if (moto.Cor == "" || moto.Proprietario == "" || moto.Modelo == "" || moto.Placa == "")
                         {
                             Console.WriteLine("É preciso preencher todos os dados!");
                             Console.ReadKey();
                         }
                         else
                         {
+
                             estacionamento.AdicionarEntradaVeiculoLINQ(moto);
                             Console.WriteLine($"Carro de {moto.Proprietario} adicionado com sucesso!");
                             quebra = false;
@@ -313,7 +315,6 @@ namespace Projeto_Estacionamento.MenuPrincipal
             do
             {
                 Console.Clear();
-                Console.Clear();
                 Console.WriteLine("[1] Alterar os dados de um veículo / [2] Cancelar");
                 string opcao = Console.ReadLine();
                 switch (opcao)
@@ -353,7 +354,7 @@ namespace Projeto_Estacionamento.MenuPrincipal
                                 else
                                 {
                                     estacionamento.UpdateVeiculo(placa, proprietario, modelo, cor, placaAlterar);
-                                                          Console.WriteLine("Veículo alterado com sucesso!");
+                                    Console.WriteLine("Veículo alterado com sucesso!");
                                     parar = false;
                                 }
                             }
